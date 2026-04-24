@@ -1,0 +1,20 @@
+# The main pipeline for Databricks_DE_Project_AssesBundle
+
+resources:
+  pipelines:
+    Bronze_Silver_earthquake_etl:
+      name: Bronze_Silver
+      configuration:
+        catalog_name: ${var.catalog}
+      libraries:
+        - glob:
+            include: ../src/DLT_pipelines/Bronze_Silver/transformations/**
+      schema: silver
+      continuous: false
+      development: false
+      photon: true
+      channel: CURRENT
+      catalog: ${var.catalog}
+      serverless: true
+      root_path: ../src/DLT_pipelines/Bronze_Silver
+

@@ -1,0 +1,47 @@
+# This is a Databricks asset bundle definition for Databricks_DE_Project_AssesBundle.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: Databricks_DE_Project_AssesBundle
+  uuid: 27006880-3edb-4e19-bb09-6d4b2ca79a5d
+
+include:
+  - resources/*.yml
+
+# Variable declarations. These variables are assigned in the dev/prod targets below.
+variables:
+  catalog:
+    description: The catalog to use
+  schema:
+    description: The schema to use
+  warehouse_id:
+    description: WarehouseID
+
+targets:
+  dev:
+    # The default target uses 'mode: development' to create a development copy.
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default.
+    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-737802bb-a461.cloud.databricks.com
+    variables:
+      catalog: youtube_dev
+      schema: dev
+      warehouse_id: b3a1e6bf1f318106 
+    presets:
+      artifacts_dynamic_version: true
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-737802bb-a461.cloud.databricks.com
+      # We explicitly deploy to /Workspace/Users/fairoozbaig07@gmail.com to make sure we only have a single copy.
+      root_path: /Workspace/Users/fairoozbaig07@gmail.com/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: youtube_prod
+      schema: prod
+      warehouse_id: b3a1e6bf1f318106
+    permissions:
+      - user_name: fairoozbaig07@gmail.com
+        level: CAN_MANAGE
