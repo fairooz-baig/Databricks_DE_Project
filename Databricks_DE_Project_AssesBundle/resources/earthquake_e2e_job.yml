@@ -1,7 +1,7 @@
 resources:
   jobs:
     E2E_EarthQuake_Project:
-      name: E2E_EarthQuake_Project_Prod
+      name: E2E_EarthQuake_Project_Prod   #updated
       tasks:
         - task_key: Ingestion_Bronze
           notebook_task:
