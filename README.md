@@ -161,7 +161,7 @@ variables:
 ## 👤 Author
 
 **Fairooz Baig**
-🔗 https://github.com/FairoozBaig
+🔗 https://github.com/fairooz-baig
 
 ---
 
